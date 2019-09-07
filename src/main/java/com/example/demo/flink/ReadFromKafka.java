@@ -1,11 +1,11 @@
 package com.example.demo.flink;
 
-import org.apache.flink.api.common.functions.MapFunction;
-import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import java.util.Date;
+
+import com.example.demo.javaBean.Po;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010;
-import java.util.Date;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer09;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +25,15 @@ public class ReadFromKafka {
         Properties properties = new Properties();
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaProperties.KAFAKA_BROKER_LIST);
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "flink_consumer");
-        DataStream<String> stream = env.addSource(new FlinkKafkaConsumer010<String>(KafkaProperties.TOPIC, new SimpleStringSchema(), properties));
-        stream.map(new MapFunction<String, String>() {
-            @Override
-            public String map(String value) throws Exception {
-                logger.info("进行过滤筛选 ==> " + value);
-                return new Date().toString() + " : " + value;
-            }
-        });
+       // DataStream<Po> stream = env.addSource(new FlinkKafkaConsumer09<Po>());
+//        DataStream<String> stream = env.addSource(new FlinkKafkaConsumer010<String>(KafkaProperties.TOPIC, new SimpleStringSchema(), properties));
+//        stream.map(new MapFunction<String, String>() {
+//            @Override
+//            public String map(String value) throws Exception {
+//                logger.info("进行过滤筛选 ==> " + value);
+//                return new Date().toString() + " : " + value;
+//            }
+//        });
         //不做打印处理
         //.print();
         env.execute();
