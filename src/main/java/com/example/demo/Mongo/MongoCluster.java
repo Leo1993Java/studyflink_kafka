@@ -19,8 +19,10 @@ public class MongoCluster {
                     .ssl
                     ......
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            mongoClient.close();
         }
     }
-
-
 }
