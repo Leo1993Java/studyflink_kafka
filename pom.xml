@@ -67,7 +67,12 @@
             <systemPath>${project.basedir}/lib/myConnector_produceTime/flink-connector-kafka-base-myConnector_2.11-1.5.1.jar</systemPath>
         </dependency>
 
-
+        <!-- https://mvnrepository.com/artifact/io.feling/mongo -->
+        <dependency>
+            <groupId>io.feling</groupId>
+            <artifactId>mongo</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
         <!--        <dependency>-->
         <!--            <groupId>org.apache.flink</groupId>-->
